@@ -1,0 +1,1351 @@
+[
+  {
+    "final_accuracy": 0.7265,
+    "best_accuracy": 0.8722,
+    "final_loss": 0.7571348764896393,
+    "mean_audit_f1": null,
+    "total_dropouts": 4,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc1",
+    "experiment_id": "B1_fedavg",
+    "elapsed_seconds": 286.1263106999977,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments_2\\results\\pc1\\B1_fedavg\\metrics\\B1_fedavg.json",
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc1\\B1_fedavg\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7194,
+    "best_accuracy": 0.8694,
+    "final_loss": 0.7935839146137238,
+    "mean_audit_f1": null,
+    "total_dropouts": 4,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc1",
+    "experiment_id": "B2_fedprox",
+    "elapsed_seconds": 432.64514690000215,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments_2\\results\\pc1\\B2_fedprox\\metrics\\B2_fedprox.json",
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc1\\B2_fedprox\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7616,
+    "best_accuracy": 0.8597,
+    "final_loss": 0.6318701617717742,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc1",
+    "experiment_id": "I2_fedavg_aavl_dsane",
+    "elapsed_seconds": 485.268748100003,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments_2\\results\\pc1\\I2_fedavg_aavl_dsane\\metrics\\I2_fedavg_aavl_dsane.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc1\\I2_fedavg_aavl_dsane\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7615,
+    "best_accuracy": 0.8634,
+    "final_loss": 0.6472996050357819,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc1",
+    "experiment_id": "I3_complete_sra_fl",
+    "elapsed_seconds": 325.0478629999998,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments_2\\results\\pc1\\I3_complete_sra_fl\\metrics\\I3_complete_sra_fl.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "comm_decisions": 13,
+    "comm_uploads": 12,
+    "comm_skips": 1,
+    "llm_usage": {
+      "calls": 42,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "mean_latency_seconds": 0.0,
+      "success_rate": 0.0,
+      "model": "qwen/qwen3.8-27b"
+    },
+    "privacy": {
+      "clients": {
+        "0": {
+          "client_id": 0,
+          "epsilon_total": 9.095824194223853,
+          "epsilon_spent": 1.3450545992635392,
+          "remaining": 7.750769594960314,
+          "history": [
+            {
+              "round": 1,
+              "cost": 0.6725272996317696,
+              "local_epochs": 1,
+              "remaining": 8.423296894592085
+            },
+            {
+              "round": 2,
+              "cost": 0.6725272996317696,
+              "local_epochs": 1,
+              "remaining": 7.750769594960314
+            }
+          ]
+        },
+        "1": {
+          "client_id": 1,
+          "epsilon_total": 7.75551375900821,
+          "epsilon_spent": 0.26366408553308884,
+          "remaining": 7.491849673475121,
+          "history": [
+            {
+              "round": 10,
+              "cost": 0.26366408553308884,
+              "local_epochs": 1,
+              "remaining": 7.491849673475121
+            }
+          ]
+        },
+        "2": {
+          "client_id": 2,
+          "epsilon_total": 9.434391679645529,
+          "epsilon_spent": 1.176281216376424,
+          "remaining": 8.258110463269105,
+          "history": [
+            {
+              "round": 7,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 9.042297940853388
+            },
+            {
+              "round": 8,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 8.650204202061246
+            },
+            {
+              "round": 9,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 8.258110463269105
+            }
+          ]
+        },
+        "3": {
+          "client_id": 3,
+          "epsilon_total": 8.789472116237455,
+          "epsilon_spent": 0.5034482657135686,
+          "remaining": 8.286023850523886,
+          "history": [
+            {
+              "round": 3,
+              "cost": 0.5034482657135686,
+              "local_epochs": 1,
+              "remaining": 8.286023850523886
+            }
+          ]
+        },
+        "4": {
+          "client_id": 4,
+          "epsilon_total": 6.376709391550598,
+          "epsilon_spent": 1.1786220768337914,
+          "remaining": 5.1980873147168065,
+          "history": [
+            {
+              "round": 7,
+              "cost": 0.5893110384168957,
+              "local_epochs": 1,
+              "remaining": 5.787398353133702
+            },
+            {
+              "round": 8,
+              "cost": 0.5893110384168957,
+              "local_epochs": 1,
+              "remaining": 5.1980873147168065
+            }
+          ]
+        },
+        "5": {
+          "client_id": 5,
+          "epsilon_total": 9.902489406547023,
+          "epsilon_spent": 5.82962798984635,
+          "remaining": 4.072861416700673,
+          "history": [
+            {
+              "round": 1,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 9.25475296323076
+            },
+            {
+              "round": 2,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 8.6070165199145
+            },
+            {
+              "round": 4,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 7.959280076598239
+            },
+            {
+              "round": 5,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 7.311543633281978
+            },
+            {
+              "round": 6,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 6.663807189965717
+            },
+            {
+              "round": 7,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 6.016070746649456
+            },
+            {
+              "round": 8,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 5.368334303333195
+            },
+            {
+              "round": 9,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 4.720597860016934
+            },
+            {
+              "round": 10,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 4.072861416700673
+            }
+          ]
+        },
+        "6": {
+          "client_id": 6,
+          "epsilon_total": 9.044558807961412,
+          "epsilon_spent": 0.0,
+          "remaining": 9.044558807961412,
+          "history": []
+        },
+        "7": {
+          "client_id": 7,
+          "epsilon_total": 9.144257221107814,
+          "epsilon_spent": 0.0,
+          "remaining": 9.144257221107814,
+          "history": []
+        },
+        "8": {
+          "client_id": 8,
+          "epsilon_total": 6.5124545307021835,
+          "epsilon_spent": 0.0,
+          "remaining": 6.5124545307021835,
+          "history": []
+        },
+        "9": {
+          "client_id": 9,
+          "epsilon_total": 7.801543751582269,
+          "epsilon_spent": 0.0,
+          "remaining": 7.801543751582269,
+          "history": []
+        }
+      },
+      "mean_remaining": 7.356051662499958
+    },
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc1\\I3_complete_sra_fl\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7615,
+    "best_accuracy": 0.8634,
+    "final_loss": 0.6472996050357819,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc2",
+    "experiment_id": "I3_complete_sra_fl_llm",
+    "elapsed_seconds": 336.9794353999896,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\lenovo\\Desktop\\7th Sem\\Agentic AI\\Project\\SRA-FL-main\\SRA-FL-main\\experiments_2\\results\\pc2\\I3_complete_sra_fl_llm\\metrics\\I3_complete_sra_fl_llm.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "comm_decisions": 13,
+    "comm_uploads": 12,
+    "comm_skips": 1,
+    "llm_usage": {
+      "calls": 42,
+      "prompt_tokens": 13989,
+      "completion_tokens": 2079,
+      "total_tokens": 16068,
+      "mean_latency_seconds": 0.24664406190415666,
+      "success_rate": 1.0,
+      "model": "qwen/qwen3.8-27b"
+    },
+    "privacy": {
+      "clients": {
+        "0": {
+          "client_id": 0,
+          "epsilon_total": 9.095824194223853,
+          "epsilon_spent": 1.3450545992635392,
+          "remaining": 7.750769594960314,
+          "history": [
+            {
+              "round": 1,
+              "cost": 0.6725272996317696,
+              "local_epochs": 1,
+              "remaining": 8.423296894592085
+            },
+            {
+              "round": 2,
+              "cost": 0.6725272996317696,
+              "local_epochs": 1,
+              "remaining": 7.750769594960314
+            }
+          ]
+        },
+        "1": {
+          "client_id": 1,
+          "epsilon_total": 7.75551375900821,
+          "epsilon_spent": 0.26366408553308884,
+          "remaining": 7.491849673475121,
+          "history": [
+            {
+              "round": 10,
+              "cost": 0.26366408553308884,
+              "local_epochs": 1,
+              "remaining": 7.491849673475121
+            }
+          ]
+        },
+        "2": {
+          "client_id": 2,
+          "epsilon_total": 9.434391679645529,
+          "epsilon_spent": 1.176281216376424,
+          "remaining": 8.258110463269105,
+          "history": [
+            {
+              "round": 7,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 9.042297940853388
+            },
+            {
+              "round": 8,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 8.650204202061246
+            },
+            {
+              "round": 9,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 8.258110463269105
+            }
+          ]
+        },
+        "3": {
+          "client_id": 3,
+          "epsilon_total": 8.789472116237455,
+          "epsilon_spent": 0.5034482657135686,
+          "remaining": 8.286023850523886,
+          "history": [
+            {
+              "round": 3,
+              "cost": 0.5034482657135686,
+              "local_epochs": 1,
+              "remaining": 8.286023850523886
+            }
+          ]
+        },
+        "4": {
+          "client_id": 4,
+          "epsilon_total": 6.376709391550598,
+          "epsilon_spent": 1.1786220768337914,
+          "remaining": 5.1980873147168065,
+          "history": [
+            {
+              "round": 7,
+              "cost": 0.5893110384168957,
+              "local_epochs": 1,
+              "remaining": 5.787398353133702
+            },
+            {
+              "round": 8,
+              "cost": 0.5893110384168957,
+              "local_epochs": 1,
+              "remaining": 5.1980873147168065
+            }
+          ]
+        },
+        "5": {
+          "client_id": 5,
+          "epsilon_total": 9.902489406547023,
+          "epsilon_spent": 5.82962798984635,
+          "remaining": 4.072861416700673,
+          "history": [
+            {
+              "round": 1,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 9.25475296323076
+            },
+            {
+              "round": 2,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 8.6070165199145
+            },
+            {
+              "round": 4,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 7.959280076598239
+            },
+            {
+              "round": 5,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 7.311543633281978
+            },
+            {
+              "round": 6,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 6.663807189965717
+            },
+            {
+              "round": 7,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 6.016070746649456
+            },
+            {
+              "round": 8,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 5.368334303333195
+            },
+            {
+              "round": 9,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 4.720597860016934
+            },
+            {
+              "round": 10,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 4.072861416700673
+            }
+          ]
+        },
+        "6": {
+          "client_id": 6,
+          "epsilon_total": 9.044558807961412,
+          "epsilon_spent": 0.0,
+          "remaining": 9.044558807961412,
+          "history": []
+        },
+        "7": {
+          "client_id": 7,
+          "epsilon_total": 9.144257221107814,
+          "epsilon_spent": 0.0,
+          "remaining": 9.144257221107814,
+          "history": []
+        },
+        "8": {
+          "client_id": 8,
+          "epsilon_total": 6.5124545307021835,
+          "epsilon_spent": 0.0,
+          "remaining": 6.5124545307021835,
+          "history": []
+        },
+        "9": {
+          "client_id": 9,
+          "epsilon_total": 7.801543751582269,
+          "epsilon_spent": 0.0,
+          "remaining": 7.801543751582269,
+          "history": []
+        }
+      },
+      "mean_remaining": 7.356051662499958
+    },
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc2\\I3_complete_sra_fl_llm\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7408,
+    "best_accuracy": 0.8775,
+    "final_loss": 0.734837918996811,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc2",
+    "experiment_id": "N1_fixed_config",
+    "elapsed_seconds": 317.75323290000233,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\lenovo\\Desktop\\7th Sem\\Agentic AI\\Project\\SRA-FL-main\\SRA-FL-main\\experiments_2\\results\\pc2\\N1_fixed_config\\metrics\\N1_fixed_config.json",
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc2\\N1_fixed_config\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7616,
+    "best_accuracy": 0.8597,
+    "final_loss": 0.6318701617717742,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc2",
+    "experiment_id": "N2_rule_based",
+    "elapsed_seconds": 323.9392030000017,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\lenovo\\Desktop\\7th Sem\\Agentic AI\\Project\\SRA-FL-main\\SRA-FL-main\\experiments_2\\results\\pc2\\N2_rule_based\\metrics\\N2_rule_based.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc2\\N2_rule_based\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7616,
+    "best_accuracy": 0.8597,
+    "final_loss": 0.6318701617717742,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc2",
+    "experiment_id": "N3_dsane_llm",
+    "elapsed_seconds": 313.0986387000012,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\lenovo\\Desktop\\7th Sem\\Agentic AI\\Project\\SRA-FL-main\\SRA-FL-main\\experiments_2\\results\\pc2\\N3_dsane_llm\\metrics\\N3_dsane_llm.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc2\\N3_dsane_llm\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7265,
+    "best_accuracy": 0.8722,
+    "final_loss": 0.7571348764896393,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 4,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc3",
+    "experiment_id": "A1_no_verification",
+    "elapsed_seconds": 241.26974089999567,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments_2\\results\\pc3\\A1_no_verification\\metrics\\A1_no_verification.json",
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc3\\A1_no_verification\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7265,
+    "best_accuracy": 0.8722,
+    "final_loss": 0.7571348764896393,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 4,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc3",
+    "experiment_id": "A2_threshold_verification",
+    "elapsed_seconds": 244.8428012000004,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments_2\\results\\pc3\\A2_threshold_verification\\metrics\\A2_threshold_verification.json",
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc3\\A2_threshold_verification\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7408,
+    "best_accuracy": 0.8775,
+    "final_loss": 0.734837918996811,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc3",
+    "experiment_id": "A3_aavl_historical",
+    "elapsed_seconds": 241.0274158999964,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments_2\\results\\pc3\\A3_aavl_historical\\metrics\\A3_aavl_historical.json",
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc3\\A3_aavl_historical\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7616,
+    "best_accuracy": 0.8597,
+    "final_loss": 0.6318701617717742,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc3",
+    "experiment_id": "C1_comm_fixed",
+    "elapsed_seconds": 244.46336870000232,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments_2\\results\\pc3\\C1_comm_fixed\\metrics\\C1_comm_fixed.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "comm_decisions": 13,
+    "comm_uploads": 13,
+    "comm_skips": 0,
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc3\\C1_comm_fixed\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7616,
+    "best_accuracy": 0.8597,
+    "final_loss": 0.6318701617717742,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc3",
+    "experiment_id": "C2_comm_threshold",
+    "elapsed_seconds": 241.94037399999797,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments_2\\results\\pc3\\C2_comm_threshold\\metrics\\C2_comm_threshold.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "comm_decisions": 13,
+    "comm_uploads": 13,
+    "comm_skips": 0,
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc3\\C2_comm_threshold\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7713,
+    "best_accuracy": 0.8617,
+    "final_loss": 0.5698356928348541,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc3",
+    "experiment_id": "C3_comm_learning",
+    "elapsed_seconds": 240.50133320000168,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments_2\\results\\pc3\\C3_comm_learning\\metrics\\C3_comm_learning.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "comm_decisions": 13,
+    "comm_uploads": 12,
+    "comm_skips": 1,
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc3\\C3_comm_learning\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7616,
+    "best_accuracy": 0.8597,
+    "final_loss": 0.6318701617717742,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc4",
+    "experiment_id": "P1_resource_only",
+    "elapsed_seconds": 319.5054139999993,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\lenovo\\Desktop\\7th Sem\\Agentic AI\\Project\\SRA-FL-main\\SRA-FL-main\\experiments_2\\results\\pc4\\P1_resource_only\\metrics\\P1_resource_only.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc4\\P1_resource_only\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7616,
+    "best_accuracy": 0.8597,
+    "final_loss": 0.6318701617717742,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc4",
+    "experiment_id": "P2_privacy_aware",
+    "elapsed_seconds": 320.28290520000155,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\lenovo\\Desktop\\7th Sem\\Agentic AI\\Project\\SRA-FL-main\\SRA-FL-main\\experiments_2\\results\\pc4\\P2_privacy_aware\\metrics\\P2_privacy_aware.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "privacy": {
+      "clients": {
+        "0": {
+          "client_id": 0,
+          "epsilon_total": 9.095824194223853,
+          "epsilon_spent": 1.3450545992635392,
+          "remaining": 7.750769594960314,
+          "history": [
+            {
+              "round": 1,
+              "cost": 0.6725272996317696,
+              "local_epochs": 1,
+              "remaining": 8.423296894592085
+            },
+            {
+              "round": 2,
+              "cost": 0.6725272996317696,
+              "local_epochs": 1,
+              "remaining": 7.750769594960314
+            }
+          ]
+        },
+        "1": {
+          "client_id": 1,
+          "epsilon_total": 7.75551375900821,
+          "epsilon_spent": 0.26366408553308884,
+          "remaining": 7.491849673475121,
+          "history": [
+            {
+              "round": 10,
+              "cost": 0.26366408553308884,
+              "local_epochs": 1,
+              "remaining": 7.491849673475121
+            }
+          ]
+        },
+        "2": {
+          "client_id": 2,
+          "epsilon_total": 9.434391679645529,
+          "epsilon_spent": 1.176281216376424,
+          "remaining": 8.258110463269105,
+          "history": [
+            {
+              "round": 7,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 9.042297940853388
+            },
+            {
+              "round": 8,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 8.650204202061246
+            },
+            {
+              "round": 9,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 8.258110463269105
+            }
+          ]
+        },
+        "3": {
+          "client_id": 3,
+          "epsilon_total": 8.789472116237455,
+          "epsilon_spent": 0.5034482657135686,
+          "remaining": 8.286023850523886,
+          "history": [
+            {
+              "round": 3,
+              "cost": 0.5034482657135686,
+              "local_epochs": 1,
+              "remaining": 8.286023850523886
+            }
+          ]
+        },
+        "4": {
+          "client_id": 4,
+          "epsilon_total": 6.376709391550598,
+          "epsilon_spent": 1.1786220768337914,
+          "remaining": 5.1980873147168065,
+          "history": [
+            {
+              "round": 7,
+              "cost": 0.5893110384168957,
+              "local_epochs": 1,
+              "remaining": 5.787398353133702
+            },
+            {
+              "round": 8,
+              "cost": 0.5893110384168957,
+              "local_epochs": 1,
+              "remaining": 5.1980873147168065
+            }
+          ]
+        },
+        "5": {
+          "client_id": 5,
+          "epsilon_total": 9.902489406547023,
+          "epsilon_spent": 5.82962798984635,
+          "remaining": 4.072861416700673,
+          "history": [
+            {
+              "round": 1,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 9.25475296323076
+            },
+            {
+              "round": 2,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 8.6070165199145
+            },
+            {
+              "round": 4,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 7.959280076598239
+            },
+            {
+              "round": 5,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 7.311543633281978
+            },
+            {
+              "round": 6,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 6.663807189965717
+            },
+            {
+              "round": 7,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 6.016070746649456
+            },
+            {
+              "round": 8,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 5.368334303333195
+            },
+            {
+              "round": 9,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 4.720597860016934
+            },
+            {
+              "round": 10,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 4.072861416700673
+            }
+          ]
+        },
+        "6": {
+          "client_id": 6,
+          "epsilon_total": 9.044558807961412,
+          "epsilon_spent": 0.0,
+          "remaining": 9.044558807961412,
+          "history": []
+        },
+        "7": {
+          "client_id": 7,
+          "epsilon_total": 9.144257221107814,
+          "epsilon_spent": 0.0,
+          "remaining": 9.144257221107814,
+          "history": []
+        },
+        "8": {
+          "client_id": 8,
+          "epsilon_total": 6.5124545307021835,
+          "epsilon_spent": 0.0,
+          "remaining": 6.5124545307021835,
+          "history": []
+        },
+        "9": {
+          "client_id": 9,
+          "epsilon_total": 7.801543751582269,
+          "epsilon_spent": 0.0,
+          "remaining": 7.801543751582269,
+          "history": []
+        }
+      },
+      "mean_remaining": 7.356051662499958
+    },
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc4\\P2_privacy_aware\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7616,
+    "best_accuracy": 0.8597,
+    "final_loss": 0.6318701617717742,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc4",
+    "experiment_id": "P3_epsilon_high",
+    "elapsed_seconds": 314.2098652000059,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\lenovo\\Desktop\\7th Sem\\Agentic AI\\Project\\SRA-FL-main\\SRA-FL-main\\experiments_2\\results\\pc4\\P3_epsilon_high\\metrics\\P3_epsilon_high.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "privacy": {
+      "clients": {
+        "0": {
+          "client_id": 0,
+          "epsilon_total": 13.643736291335781,
+          "epsilon_spent": 1.3450545992635392,
+          "remaining": 12.298681692072241,
+          "history": [
+            {
+              "round": 1,
+              "cost": 0.6725272996317696,
+              "local_epochs": 1,
+              "remaining": 12.971208991704012
+            },
+            {
+              "round": 2,
+              "cost": 0.6725272996317696,
+              "local_epochs": 1,
+              "remaining": 12.298681692072241
+            }
+          ]
+        },
+        "1": {
+          "client_id": 1,
+          "epsilon_total": 11.633270638512315,
+          "epsilon_spent": 0.26366408553308884,
+          "remaining": 11.369606552979226,
+          "history": [
+            {
+              "round": 10,
+              "cost": 0.26366408553308884,
+              "local_epochs": 1,
+              "remaining": 11.369606552979226
+            }
+          ]
+        },
+        "2": {
+          "client_id": 2,
+          "epsilon_total": 14.151587519468293,
+          "epsilon_spent": 1.176281216376424,
+          "remaining": 12.97530630309187,
+          "history": [
+            {
+              "round": 7,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 13.759493780676152
+            },
+            {
+              "round": 8,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 13.36740004188401
+            },
+            {
+              "round": 9,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 12.97530630309187
+            }
+          ]
+        },
+        "3": {
+          "client_id": 3,
+          "epsilon_total": 13.184208174356183,
+          "epsilon_spent": 0.5034482657135686,
+          "remaining": 12.680759908642614,
+          "history": [
+            {
+              "round": 3,
+              "cost": 0.5034482657135686,
+              "local_epochs": 1,
+              "remaining": 12.680759908642614
+            }
+          ]
+        },
+        "4": {
+          "client_id": 4,
+          "epsilon_total": 9.565064087325897,
+          "epsilon_spent": 1.1786220768337914,
+          "remaining": 8.386442010492106,
+          "history": [
+            {
+              "round": 7,
+              "cost": 0.5893110384168957,
+              "local_epochs": 1,
+              "remaining": 8.975753048909002
+            },
+            {
+              "round": 8,
+              "cost": 0.5893110384168957,
+              "local_epochs": 1,
+              "remaining": 8.386442010492106
+            }
+          ]
+        },
+        "5": {
+          "client_id": 5,
+          "epsilon_total": 14.853734109820534,
+          "epsilon_spent": 5.82962798984635,
+          "remaining": 9.024106119974185,
+          "history": [
+            {
+              "round": 1,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 14.205997666504274
+            },
+            {
+              "round": 2,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 13.558261223188012
+            },
+            {
+              "round": 4,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 12.91052477987175
+            },
+            {
+              "round": 5,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 12.26278833655549
+            },
+            {
+              "round": 6,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 11.61505189323923
+            },
+            {
+              "round": 7,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 10.967315449922967
+            },
+            {
+              "round": 8,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 10.319579006606705
+            },
+            {
+              "round": 9,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 9.671842563290445
+            },
+            {
+              "round": 10,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 9.024106119974185
+            }
+          ]
+        },
+        "6": {
+          "client_id": 6,
+          "epsilon_total": 13.566838211942118,
+          "epsilon_spent": 0.0,
+          "remaining": 13.566838211942118,
+          "history": []
+        },
+        "7": {
+          "client_id": 7,
+          "epsilon_total": 13.716385831661722,
+          "epsilon_spent": 0.0,
+          "remaining": 13.716385831661722,
+          "history": []
+        },
+        "8": {
+          "client_id": 8,
+          "epsilon_total": 9.768681796053276,
+          "epsilon_spent": 0.0,
+          "remaining": 9.768681796053276,
+          "history": []
+        },
+        "9": {
+          "client_id": 9,
+          "epsilon_total": 11.702315627373403,
+          "epsilon_spent": 0.0,
+          "remaining": 11.702315627373403,
+          "history": []
+        }
+      },
+      "mean_remaining": 11.548912405428275
+    },
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc4\\P3_epsilon_high\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7616,
+    "best_accuracy": 0.8597,
+    "final_loss": 0.6318701617717742,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc4",
+    "experiment_id": "P4_epsilon_low",
+    "elapsed_seconds": 310.27059670000017,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\lenovo\\Desktop\\7th Sem\\Agentic AI\\Project\\SRA-FL-main\\SRA-FL-main\\experiments_2\\results\\pc4\\P4_epsilon_low\\metrics\\P4_epsilon_low.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "privacy": {
+      "clients": {
+        "0": {
+          "client_id": 0,
+          "epsilon_total": 3.4109340728339452,
+          "epsilon_spent": 1.3450545992635392,
+          "remaining": 2.065879473570406,
+          "history": [
+            {
+              "round": 1,
+              "cost": 0.6725272996317696,
+              "local_epochs": 1,
+              "remaining": 2.7384067732021755
+            },
+            {
+              "round": 2,
+              "cost": 0.6725272996317696,
+              "local_epochs": 1,
+              "remaining": 2.065879473570406
+            }
+          ]
+        },
+        "1": {
+          "client_id": 1,
+          "epsilon_total": 2.9083176596280786,
+          "epsilon_spent": 0.26366408553308884,
+          "remaining": 2.6446535740949897,
+          "history": [
+            {
+              "round": 10,
+              "cost": 0.26366408553308884,
+              "local_epochs": 1,
+              "remaining": 2.6446535740949897
+            }
+          ]
+        },
+        "2": {
+          "client_id": 2,
+          "epsilon_total": 3.5378968798670734,
+          "epsilon_spent": 1.176281216376424,
+          "remaining": 2.3616156634906496,
+          "history": [
+            {
+              "round": 7,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 3.145803141074932
+            },
+            {
+              "round": 8,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 2.753709402282791
+            },
+            {
+              "round": 9,
+              "cost": 0.3920937387921413,
+              "local_epochs": 1,
+              "remaining": 2.3616156634906496
+            }
+          ]
+        },
+        "3": {
+          "client_id": 3,
+          "epsilon_total": 3.2960520435890457,
+          "epsilon_spent": 0.5034482657135686,
+          "remaining": 2.792603777875477,
+          "history": [
+            {
+              "round": 3,
+              "cost": 0.5034482657135686,
+              "local_epochs": 1,
+              "remaining": 2.792603777875477
+            }
+          ]
+        },
+        "4": {
+          "client_id": 4,
+          "epsilon_total": 2.3912660218314743,
+          "epsilon_spent": 1.1786220768337914,
+          "remaining": 1.212643944997683,
+          "history": [
+            {
+              "round": 7,
+              "cost": 0.5893110384168957,
+              "local_epochs": 1,
+              "remaining": 1.8019549834145785
+            },
+            {
+              "round": 8,
+              "cost": 0.5893110384168957,
+              "local_epochs": 1,
+              "remaining": 1.212643944997683
+            }
+          ]
+        },
+        "5": {
+          "client_id": 5,
+          "epsilon_total": 3.7134335274551336,
+          "epsilon_spent": 3.7134335274551336,
+          "remaining": 0.0,
+          "history": [
+            {
+              "round": 1,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 3.0656970841388724
+            },
+            {
+              "round": 2,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 2.4179606408226113
+            },
+            {
+              "round": 4,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 1.7702241975063502
+            },
+            {
+              "round": 5,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 1.122487754190089
+            },
+            {
+              "round": 6,
+              "cost": 0.6477364433162611,
+              "local_epochs": 1,
+              "remaining": 0.47475131087382794
+            },
+            {
+              "round": 7,
+              "cost": 0.47475131087382794,
+              "local_epochs": 1,
+              "remaining": 0.0
+            },
+            {
+              "round": 8,
+              "cost": 0.0,
+              "local_epochs": 1,
+              "remaining": 0.0
+            },
+            {
+              "round": 9,
+              "cost": 0.0,
+              "local_epochs": 1,
+              "remaining": 0.0
+            },
+            {
+              "round": 10,
+              "cost": 0.0,
+              "local_epochs": 1,
+              "remaining": 0.0
+            }
+          ]
+        },
+        "6": {
+          "client_id": 6,
+          "epsilon_total": 3.3917095529855295,
+          "epsilon_spent": 0.0,
+          "remaining": 3.3917095529855295,
+          "history": []
+        },
+        "7": {
+          "client_id": 7,
+          "epsilon_total": 3.4290964579154304,
+          "epsilon_spent": 0.0,
+          "remaining": 3.4290964579154304,
+          "history": []
+        },
+        "8": {
+          "client_id": 8,
+          "epsilon_total": 2.442170449013319,
+          "epsilon_spent": 0.0,
+          "remaining": 2.442170449013319,
+          "history": []
+        },
+        "9": {
+          "client_id": 9,
+          "epsilon_total": 2.925578906843351,
+          "epsilon_spent": 0.0,
+          "remaining": 2.925578906843351,
+          "history": []
+        }
+      },
+      "mean_remaining": 2.3265951800786837
+    },
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc4\\P4_epsilon_low\\summary.json"
+  },
+  {
+    "experiment_id": "R0_retrieval_probe",
+    "pc": "pc4",
+    "mean_precision_at_5": 0.39999999999999997,
+    "mean_latency_seconds": 9.155999941867776e-05,
+    "num_queries": 20,
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc4\\R0_retrieval_probe\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7616,
+    "best_accuracy": 0.8597,
+    "final_loss": 0.6318701617717742,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc4",
+    "experiment_id": "R1_no_rag",
+    "elapsed_seconds": 304.0681721000001,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\lenovo\\Desktop\\7th Sem\\Agentic AI\\Project\\SRA-FL-main\\SRA-FL-main\\experiments_2\\results\\pc4\\R1_no_rag\\metrics\\R1_no_rag.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc4\\R1_no_rag\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7708,
+    "best_accuracy": 0.8649,
+    "final_loss": 0.5902023512363433,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc4",
+    "experiment_id": "R2_flat_rag",
+    "elapsed_seconds": 316.74370230000204,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\lenovo\\Desktop\\7th Sem\\Agentic AI\\Project\\SRA-FL-main\\SRA-FL-main\\experiments_2\\results\\pc4\\R2_flat_rag\\metrics\\R2_flat_rag.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "llm_usage": {
+      "calls": 10,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "mean_latency_seconds": 0.0,
+      "success_rate": 0.0,
+      "model": "qwen/qwen3.8-27b"
+    },
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc4\\R2_flat_rag\\summary.json"
+  },
+  {
+    "final_accuracy": 0.7708,
+    "best_accuracy": 0.8649,
+    "final_loss": 0.5902023512363433,
+    "mean_audit_f1": 0.1,
+    "total_dropouts": 5,
+    "num_rounds_logged": 11,
+    "fit_participations": 10,
+    "pc": "pc4",
+    "experiment_id": "R3_hierarchical_rag",
+    "elapsed_seconds": 314.7656816000017,
+    "device": "cpu",
+    "metrics_path": "C:\\Users\\lenovo\\Desktop\\7th Sem\\Agentic AI\\Project\\SRA-FL-main\\SRA-FL-main\\experiments_2\\results\\pc4\\R3_hierarchical_rag\\metrics\\R3_hierarchical_rag.json",
+    "negotiation_count": 18,
+    "negotiation_accept_rate": 1.0,
+    "llm_usage": {
+      "calls": 42,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "mean_latency_seconds": 0.0,
+      "success_rate": 0.0,
+      "model": "qwen/qwen3.8-27b"
+    },
+    "_path": "C:\\Users\\nooru\\Documents\\SRA-FL\\experiments\\results\\pc4\\R3_hierarchical_rag\\summary.json"
+  }
+]
