@@ -4,17 +4,22 @@ from __future__ import annotations
 
 import csv
 import json
+import sys
 import time
 from pathlib import Path
 from typing import Any
 
 import torch
 
+ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / "src"
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))
+
 from sra_fl.server.orchestration import run_simulation
 from sra_fl.utils.config_loader import load_config
 
-ROOT = Path(__file__).resolve().parent
-RESULTS = ROOT / "results"
+RESULTS = ROOT / "experiments" / "results"
 
 # Shared FL settings from experiments_2.txt §PC-1 table
 BASE_FL: dict[str, Any] = {
