@@ -1,0 +1,4 @@
+# Module 7 — privacy-aware negotiation
+enable_privacy: true
+privacy_epsilon_default: 8.0
+privacy_base_cost: 0.35

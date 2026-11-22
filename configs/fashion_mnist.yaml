@@ -1,0 +1,5 @@
+dataset: fashion_mnist
+model: cnn
+input_channels: 1
+num_classes: 10
+image_size: 28

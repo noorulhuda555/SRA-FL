@@ -1,0 +1,11 @@
+# Module 3 — misreporting / AAVL attack settings
+enable_audit: true
+dishonest_fraction: 0.3
+lie_compute_factor: 3.0
+lie_bandwidth_factor: 4.0
+suspicion_threshold: 0.35
+reputation_penalty: 0.25
+reputation_reward: 0.05
+initial_reputation: 1.0
+min_reputation: 0.05
+use_reputation_selection: true

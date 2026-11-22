@@ -1,0 +1,35 @@
+seed: 42
+num_clients: 10
+num_rounds: 3
+fraction_fit: 0.5
+fraction_evaluate: 0.5
+min_fit_clients: 2
+min_evaluate_clients: 2
+min_available_clients: 2
+local_epochs: 1
+batch_size: 32
+learning_rate: 0.01
+momentum: 0.9
+strategy: fedavg  # fedavg | fedprox
+proximal_mu: 0.01
+dataset: fashion_mnist  # fashion_mnist | cifar10
+partition: non_iid  # iid | non_iid
+dirichlet_alpha: 0.3
+device: cpu
+num_cpus_per_client: 0.5
+results_dir: results
+
+# Module 2 — heterogeneous client simulation
+enable_heterogeneity: true
+seconds_per_round: 3600
+dropout_probability: 0.05
+
+# Module 3 / 4 toggles (detailed settings in attack_config.yaml / negotiation_config.yaml)
+enable_audit: true
+enable_negotiation: true
+
+# Module 5 / 6 / 7 toggles (details in rag/communication/privacy configs)
+enable_rag: true
+enable_communication: true
+enable_privacy: true
+

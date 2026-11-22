@@ -1,0 +1,12 @@
+# Module 4 — DS-ANE negotiation settings
+enable_negotiation: true
+max_negotiation_rounds: 3
+min_local_epochs: 1
+max_local_epochs: 3
+default_compression_level: 0
+weak_device_epochs: 1
+strong_device_epochs: 2
+weak_device_compression: 2
+medium_device_compression: 1
+strong_device_compression: 0
+server_preferred_epochs: 2

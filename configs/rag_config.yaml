@@ -1,0 +1,4 @@
+# Module 5 — Hierarchical RAG orchestration
+enable_rag: true
+enable_llm: true
+rag_use_for_selection: true

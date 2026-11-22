@@ -1,0 +1,5 @@
+dataset: cifar10
+model: cnn
+input_channels: 3
+num_classes: 10
+image_size: 32

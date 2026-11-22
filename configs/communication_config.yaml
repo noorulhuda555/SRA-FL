@@ -1,0 +1,4 @@
+# Module 6 — learning-based communication
+enable_communication: true
+comm_epsilon: 0.15
+comm_alpha: 0.3
