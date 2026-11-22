@@ -1,4 +1,4 @@
-"""One single-panel figure per file, drawn from experiments/results."""
+"""Generate the eight figures used in the paper."""
 
 from __future__ import annotations
 
@@ -10,339 +10,297 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "experiments" / "results"
-OUT = ROOT / "assets" / "paper"
-OUT.mkdir(parents=True, exist_ok=True)
+OUT = ROOT / "results" / "figures"
+
+BLUE = "#3D5A80"
+TEAL = "#2A9D8F"
+SAND = "#E9C46A"
+CORAL = "#E76F51"
+PLUM = "#6D597A"
+INK = "#1D3557"
 
 plt.rcParams.update(
     {
-        "font.size": 12,
-        "axes.labelsize": 13,
-        "xtick.labelsize": 11,
-        "ytick.labelsize": 11,
-        "legend.fontsize": 11,
+        "font.family": "DejaVu Sans",
+        "axes.titlesize": 13,
+        "axes.titleweight": "semibold",
+        "axes.labelsize": 11,
+        "xtick.labelsize": 10,
+        "ytick.labelsize": 10,
+        "legend.fontsize": 9,
         "axes.spines.top": False,
         "axes.spines.right": False,
-        "figure.dpi": 160,
-        "savefig.dpi": 200,
-        "savefig.bbox": "tight",
+        "axes.edgecolor": "#4A4A4A",
+        "figure.facecolor": "white",
+        "axes.facecolor": "white",
     }
 )
+
+
+def save(fig: plt.Figure, filename: str) -> None:
+    OUT.mkdir(parents=True, exist_ok=True)
+    fig.savefig(OUT / filename, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+    print(filename)
 
 
 def history(experiment_id: str) -> list[dict]:
     matches = list(RESULTS.glob(f"pc*/{experiment_id}/metrics/{experiment_id}.json"))
     if not matches:
-        raise FileNotFoundError(experiment_id)
-    data = json.loads(matches[0].read_text(encoding="utf-8"))
-    return data["history"]
-
-
-def save(fig: plt.Figure, name: str) -> None:
-    fig.savefig(OUT / name)
-    plt.close(fig)
-    print(name)
-
-
-def line_chart(series: dict[str, list[dict]], key: str, ylabel: str, name: str, scale: float = 1.0) -> None:
-    fig, ax = plt.subplots(figsize=(7.4, 4.8))
-    for label, rows in series.items():
-        xs = [row["round"] for row in rows if key in row and row[key] is not None]
-        ys = [row[key] * scale for row in rows if key in row and row[key] is not None]
-        ax.plot(xs, ys, marker="o", linewidth=2.2, label=label)
-    ax.set_xlabel("Server round")
-    ax.set_ylabel(ylabel)
-    ax.set_xticks(range(0, 11))
-    ax.legend(frameon=False)
-    ax.grid(axis="y", linestyle=":", alpha=0.6)
-    save(fig, name)
-
-
-def bars(labels: list[str], values: list[float], ylabel: str, name: str, ylim: tuple[float, float] | None = None) -> None:
-    fig, ax = plt.subplots(figsize=(7.4, 4.8))
-    xpos = range(len(labels))
-    ax.bar(xpos, values, color="#2F6F8F", width=0.72)
-    ax.set_xticks(list(xpos), labels, rotation=25, ha="right")
-    ax.set_ylabel(ylabel)
-    if ylim:
-        ax.set_ylim(*ylim)
-    for x, value in zip(xpos, values):
-        ax.text(x, value, f"{value:.2f}", ha="center", va="bottom", fontsize=10)
-    ax.grid(axis="y", linestyle=":", alpha=0.6)
-    save(fig, name)
-
-
-def main() -> None:
-    b1 = history("B1_fedavg")
-    b2 = history("B2_fedprox")
-    i3 = history("I3_complete_sra_fl")
-    a3 = history("A3_aavl_historical")
-
-    line_chart(
-        {"FedAvg (B1)": b1, "FedProx (B2)": b2, "Complete stack (I3)": i3},
-        "accuracy",
-        "Test accuracy (%)",
-        "paper_accuracy_convergence.png",
-        scale=100.0,
-    )
-    line_chart(
-        {"FedAvg (B1)": b1, "FedProx (B2)": b2, "Complete stack (I3)": i3},
-        "loss",
-        "Test loss",
-        "paper_loss_convergence.png",
-    )
-
-    finals = [
-        ("FedAvg", 72.65),
-        ("FedProx", 71.94),
-        ("AAVL", 74.08),
-        ("Fixed nego.", 74.08),
-        ("Rule nego.", 76.16),
-        ("Complete", 76.15),
-        ("Fixed comm.", 76.16),
-        ("Learn comm.", 77.13),
-        ("No RAG", 76.16),
-        ("H-RAG", 77.08),
-    ]
-    bars(
-        [name for name, _ in finals],
-        [value for _, value in finals],
-        "Final test accuracy (%)",
-        "paper_final_accuracy.png",
-        ylim=(68, 82),
-    )
-
-    audit_rounds = [row["round"] for row in a3 if "audit" in row]
-    f1 = [row["audit"]["f1"] for row in a3 if "audit" in row]
-    fig, ax = plt.subplots(figsize=(7.4, 4.8))
-    ax.plot(audit_rounds, f1, marker="o", color="#B85C38", linewidth=2.2)
-    ax.set_xlabel("Server round")
-    ax.set_ylabel("Audit F1")
-    ax.set_ylim(-0.05, 1.05)
-    ax.set_xticks(range(0, 11))
-    ax.grid(axis="y", linestyle=":", alpha=0.6)
-    save(fig, "paper_audit_f1.png")
-
-    rep_rounds = [row["round"] for row in a3 if "reputation" in row]
-    rep_min = [row["reputation"]["min"] for row in a3 if "reputation" in row]
-    fig, ax = plt.subplots(figsize=(7.4, 4.8))
-    ax.plot(rep_rounds, rep_min, marker="o", color="#3D6B4F", linewidth=2.2)
-    ax.set_xlabel("Server round")
-    ax.set_ylabel("Lowest client reputation")
-    ax.set_ylim(0.5, 1.05)
-    ax.set_xticks(range(0, 11))
-    ax.grid(axis="y", linestyle=":", alpha=0.6)
-    save(fig, "paper_reputation_min.png")
-
-    fig, ax = plt.subplots(figsize=(7.4, 4.8))
-    labels = ["Fixed (C1)", "Threshold (C2)", "Learning (C3)"]
-    uploads = [13, 13, 12]
-    skips = [0, 0, 1]
-    x = range(len(labels))
-    ax.bar([i - 0.18 for i in x], uploads, width=0.36, label="Uploads", color="#2F6F8F")
-    ax.bar([i + 0.18 for i in x], skips, width=0.36, label="Skips", color="#C47B2B")
-    ax.set_xticks(list(x), labels)
-    ax.set_ylabel("Decisions")
-    ax.legend(frameon=False)
-    ax.grid(axis="y", linestyle=":", alpha=0.6)
-    save(fig, "paper_comm_actions.png")
-
-    bars(
-        ["No RAG", "Flat RAG", "Hierarchical RAG"],
-        [76.16, 77.08, 77.08],
-        "Final test accuracy (%)",
-        "paper_rag_accuracy.png",
-        ylim=(74, 80),
-    )
-    bars(
-        ["Resource only", "Budget 8", "Budget 12", "Budget 3"],
-        [76.16, 76.16, 76.16, 76.16],
-        "Final test accuracy (%)",
-        "paper_privacy_accuracy.png",
-        ylim=(74, 80),
-    )
-
-    retrieval_quality_figure()
-    audit_reputation_figure()
-    research_gap_figures()
-
-
-def audit_reputation_figure() -> None:
-    """One chart: the flagged client's reputation stays down after the round-1 detection."""
-    path = RESULTS / "pc3" / "A3_aavl_historical" / "metrics" / "A3_aavl_historical.json"
-    hist = json.loads(path.read_text(encoding="utf-8"))["history"]
-    rows = [row for row in hist if "reputation" in row]
-    rounds = [row["round"] for row in rows]
-    client0 = [row["reputation"]["scores"]["0"] for row in rows]
-    honest = [1.0 for _ in rows]
-    f1_round1 = next(row["audit"]["f1"] for row in hist if row.get("audit") and row["round"] == 1)
-
-    fig, ax = plt.subplots(figsize=(8.4, 5.0))
-    ax.plot(rounds, honest, marker="o", color="#2E7D4F", linewidth=2.4, label="Other clients (reputation 1.00)")
-    ax.plot(rounds, client0, marker="s", color="#B85C38", linewidth=2.4, label="Client 0 (flagged)")
-    ax.annotate(
-        f"Round 1: 1 client flagged, F1 = {f1_round1:.1f}",
-        xy=(1, client0[0]),
-        xytext=(2.2, 0.91),
-        fontsize=12,
-        color="#1B2838",
-        arrowprops={"arrowstyle": "->", "color": "#1B2838"},
-    )
-    ax.set_title("AAVL reputation after the audit", fontsize=16, pad=10)
-    ax.set_xlabel("Server round")
-    ax.set_ylabel("Reputation")
-    ax.set_xlim(0.5, 10.5)
-    ax.set_ylim(0.82, 1.04)
-    ax.set_xticks(rounds)
-    ax.legend(frameon=False, loc="center right")
-    ax.grid(axis="y", linestyle=":", alpha=0.6)
-    fig.tight_layout()
-
-    targets = [
-        OUT / "paper_audit_reputation.png",
-        ROOT / "results" / "figures" / "fig3_aavl_audit_reputation.png",
-        ROOT / "assets" / "fig3_aavl_audit_reputation.png",
-    ]
-    for target in targets:
-        target.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(target)
-        print(target)
-    plt.close(fig)
+        raise FileNotFoundError(f"Missing metrics for {experiment_id}")
+    return json.loads(matches[0].read_text(encoding="utf-8"))["history"]
 
 
 def final_accuracy(experiment_id: str) -> float:
-    """Read one final test accuracy, in percent, from the merged summary table."""
-    path = RESULTS / "all_summaries.csv"
-    with path.open(encoding="utf-8", newline="") as handle:
+    with (RESULTS / "all_summaries.csv").open(encoding="utf-8", newline="") as handle:
         for row in csv.DictReader(handle):
             if row["experiment_id"] == experiment_id and row["final_accuracy"]:
                 return float(row["final_accuracy"]) * 100.0
-    raise KeyError(experiment_id)
+    raise KeyError(f"Missing final_accuracy for {experiment_id}")
 
 
-def gap_bar_figure(title: str, runs: list[tuple[str, str]], filename: str, highlight: str) -> None:
-    """One bar chart for one research gap. The highlighted bar is that gap's proposed variant."""
-    labels = [label for label, _ in runs]
-    values = [final_accuracy(experiment_id) for _, experiment_id in runs]
-    colors = ["#B85C38" if label == highlight else "#2F6F8F" for label in labels]
+def accuracy_bars(
+    labels: list[str],
+    values: list[float],
+    colors: list[str],
+    title: str,
+    filename: str,
+    horizontal: bool = False,
+) -> None:
+    fig, ax = plt.subplots(figsize=(7.4, 4.3))
+    positions = range(len(labels))
 
-    fig, ax = plt.subplots(figsize=(7.6, 4.8))
-    xpos = list(range(len(labels)))
-    ax.bar(xpos, values, color=colors, width=0.62, edgecolor="#1B2838", linewidth=0.6)
-    ax.set_xticks(xpos, labels)
-    ax.set_ylabel("Final test accuracy (%)")
-    ax.set_title(title, fontsize=16, pad=10)
-    ax.set_ylim(70, 81)
-    for x, value in zip(xpos, values):
-        ax.text(x, value + 0.25, f"{value:.2f}%", ha="center", va="bottom", fontsize=12, color="#1B2838")
-    ax.grid(axis="y", linestyle=":", alpha=0.6)
+    if horizontal:
+        bars = ax.barh(list(positions), values, color=colors, height=0.62, zorder=2)
+        ax.set_yticks(list(positions), labels)
+        ax.set_xlabel("Final test accuracy (%)")
+        ax.set_xlim(70, 80)
+        ax.grid(axis="x", color="#E6E6E6", zorder=0)
+        for bar, value in zip(bars, values):
+            ax.text(value + 0.12, bar.get_y() + bar.get_height() / 2,
+                    f"{value:.2f}%", va="center", ha="left", color=INK, fontsize=9)
+    else:
+        bars = ax.bar(list(positions), values, color=colors, width=0.62, zorder=2)
+        ax.set_xticks(list(positions), labels)
+        ax.set_ylabel("Final test accuracy (%)")
+        ax.set_ylim(70, 80)
+        ax.grid(axis="y", color="#E6E6E6", zorder=0)
+        for bar, value in zip(bars, values):
+            ax.text(bar.get_x() + bar.get_width() / 2, value + 0.18,
+                    f"{value:.2f}%", ha="center", va="bottom", color=INK, fontsize=9)
+
+    ax.set_title(title)
     fig.tight_layout()
+    save(fig, filename)
 
-    targets = [
-        OUT / filename,
-        ROOT / "results" / "figures" / filename,
-        ROOT / "assets" / filename,
+
+def figure_1_architecture() -> None:
+    """Fig. 1: SRA-FL system architecture."""
+    fig, ax = plt.subplots(figsize=(12, 6.5))
+    ax.set_xlim(0, 12)
+    ax.set_ylim(0, 7)
+    ax.axis("off")
+
+    def box(x: float, y: float, w: float, h: float, text: str, color: str) -> None:
+        patch = FancyBboxPatch(
+            (x, y), w, h,
+            boxstyle="round,pad=0.04,rounding_size=0.12",
+            linewidth=1.4,
+            edgecolor=color,
+            facecolor="white",
+        )
+        ax.add_patch(patch)
+        ax.text(x + w / 2, y + h / 2, text, ha="center", va="center",
+                fontsize=9, fontweight="bold", color=INK)
+
+    def arrow(x1: float, y1: float, x2: float, y2: float, color: str = "#555555") -> None:
+        ax.add_patch(FancyArrowPatch(
+            (x1, y1), (x2, y2),
+            arrowstyle="-|>",
+            mutation_scale=12,
+            linewidth=1.2,
+            color=color,
+        ))
+
+    box(0.2, 4.6, 2.0, 1.4, "Simulation inputs\nFedScale, Fashion-MNIST,\nMobiPerf", "#6D597A")
+    box(2.7, 4.6, 2.0, 1.4, "Client Guardian\nstate and resource checks", BLUE)
+    box(5.2, 4.6, 1.8, 1.4, "AAVL audit\nreputation scoring", CORAL)
+    box(7.1, 4.6, 1.8, 1.4, "Hierarchical RAG\nclient records", TEAL)
+    box(9.0, 4.6, 1.8, 1.4, "DS-ANE negotiation\nand privacy", "#C47B2B")
+
+    box(2.7, 2.2, 2.0, 1.4, "Local trainer\nCNN and FedAvg/FedProx", BLUE)
+    box(5.2, 2.2, 2.0, 1.4, "SRA-FL orchestrator\nselection and rounds", "#6B8E23")
+    box(7.7, 2.2, 2.0, 1.4, "Communication policy\nupload/compress/skip", "#4A7C59")
+    box(10.2, 2.2, 1.6, 1.4, "Aggregation\nFedAvg/FedProx", "#3D6B4F")
+
+    arrow(2.2, 5.3, 2.7, 5.3)
+    arrow(4.7, 5.3, 5.2, 5.3)
+    arrow(7.0, 5.3, 7.1, 5.3)
+    arrow(8.9, 5.3, 9.0, 5.3)
+    arrow(3.7, 4.6, 3.7, 3.6)
+    arrow(3.7, 2.2, 5.2, 2.9)
+    arrow(7.2, 2.9, 7.7, 2.9)
+    arrow(9.7, 2.9, 10.2, 2.9)
+    arrow(11.0, 3.6, 11.0, 4.6)
+
+    ax.text(6.0, 6.45, "SRA-FL System Architecture", ha="center", va="center",
+            fontsize=16, fontweight="bold", color=INK)
+    fig.tight_layout()
+    save(fig, "architecture_horizontal.png")
+
+
+def figure_2_baselines() -> None:
+    """Fig. 2: FedAvg, FedProx, and complete SRA-FL."""
+    accuracy_bars(
+        ["FedAvg", "FedProx", "Complete SRA-FL"],
+        [final_accuracy("B1_fedavg"), final_accuracy("B2_fedprox"), final_accuracy("I3_complete_sra_fl")],
+        [BLUE, SAND, TEAL],
+        "Final test accuracy of the baselines and complete SRA-FL",
+        "fig_baseline_final_accuracy.png",
+    )
+
+
+def figure_3_audit() -> None:
+    """Fig. 3: audit settings."""
+    accuracy_bars(
+        ["No audit", "Single-round audit", "Historical audit"],
+        [
+            final_accuracy("A1_no_verification"),
+            final_accuracy("A2_threshold_verification"),
+            final_accuracy("A3_aavl_historical"),
+        ],
+        [BLUE, SAND, TEAL],
+        "Final test accuracy under three audit settings",
+        "fig_gap1_audit_accuracy.png",
+    )
+
+
+def figure_4_negotiation() -> None:
+    """Fig. 4: negotiation settings."""
+    accuracy_bars(
+        ["Fixed configuration", "Rule-based negotiation", "Language-model flag on"],
+        [
+            final_accuracy("N1_fixed_config"),
+            final_accuracy("N2_rule_based"),
+            final_accuracy("N3_dsane_llm"),
+        ],
+        [BLUE, TEAL, PLUM],
+        "Final test accuracy with and without negotiation",
+        "fig_gap2_negotiation_accuracy.png",
+        horizontal=True,
+    )
+
+
+def figure_5_communication() -> None:
+    """Fig. 5: communication decisions."""
+    labels = ["Always upload", "Bandwidth threshold", "Q-learning"]
+    uploads = [13, 13, 11]
+    compress = [0, 0, 1]
+    skips = [0, 0, 1]
+
+    fig, ax = plt.subplots(figsize=(7.4, 4.3))
+    x = range(len(labels))
+    ax.bar(x, uploads, color=TEAL, width=0.62, label="Upload", zorder=2)
+    ax.bar(x, compress, bottom=uploads, color=SAND, width=0.62, label="Compress", zorder=2)
+    bottom = [a + b for a, b in zip(uploads, compress)]
+    ax.bar(x, skips, bottom=bottom, color=CORAL, width=0.62, label="Skip", zorder=2)
+    ax.set_xticks(list(x), labels)
+    ax.set_ylabel("Communication decisions")
+    ax.set_ylim(0, 16)
+    ax.set_title("Communication decisions after local training")
+    ax.legend(frameon=False, loc="upper right")
+    ax.grid(axis="y", color="#E6E6E6", zorder=0)
+    fig.tight_layout()
+    save(fig, "fig_gap3_comm_actions.png")
+
+
+def figure_6_rag() -> None:
+    """Fig. 6: RAG accuracy."""
+    labels = ["No retrieval", "Flat retrieval", "Grouped retrieval"]
+    values = [
+        final_accuracy("R1_no_rag"),
+        final_accuracy("R2_flat_rag"),
+        final_accuracy("R3_hierarchical_rag"),
     ]
-    for target in targets:
-        target.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(target)
-        print(target)
-    plt.close(fig)
+    colors = [BLUE, TEAL, PLUM]
+
+    fig, ax = plt.subplots(figsize=(7.4, 4.3))
+    y = range(len(labels))
+    ax.hlines(list(y), 75.6, values, color="#C5C5C5", linewidth=2, zorder=1)
+    ax.scatter(values, list(y), s=90, color=colors, zorder=2)
+    for yi, value in zip(y, values):
+        ax.text(value + 0.08, yi, f"{value:.2f}%", va="center", ha="left",
+                color=INK, fontsize=9)
+    ax.set_yticks(list(y), labels)
+    ax.set_xlabel("Final test accuracy (%)")
+    ax.set_xlim(75.6, 77.8)
+    ax.set_title("Final test accuracy with and without client-record retrieval")
+    ax.grid(axis="x", color="#E6E6E6", zorder=0)
+    fig.tight_layout()
+    save(fig, "fig_gap4_retrieval_accuracy.png")
 
 
-def research_gap_figures() -> None:
-    """Five separate gap charts. The old overall-performance panel is not drawn."""
-    gap_bar_figure(
-        "Gap 1: dishonest reporting",
+def figure_7_privacy() -> None:
+    """Fig. 7: privacy-budget settings."""
+    accuracy_bars(
+        ["No budget", "Budget 8", "Budget 12", "Budget 3"],
         [
-            ("No audit", "A1_no_verification"),
-            ("Threshold", "A2_threshold_verification"),
-            ("Historical AAVL", "A3_aavl_historical"),
+            final_accuracy("P1_resource_only"),
+            final_accuracy("P2_privacy_aware"),
+            final_accuracy("P3_epsilon_high"),
+            final_accuracy("P4_epsilon_low"),
         ],
-        "fig2_gap1_honesty.png",
-        "Historical AAVL",
-    )
-    gap_bar_figure(
-        "Gap 2: server mandate",
-        [
-            ("Fixed", "N1_fixed_config"),
-            ("Rule-based", "N2_rule_based"),
-            ("LLM negotiation", "N3_dsane_llm"),
-        ],
-        "fig2_gap2_negotiation.png",
-        "Rule-based",
-    )
-    gap_bar_figure(
-        "Gap 3: fixed uploads",
-        [
-            ("Fixed", "C1_comm_fixed"),
-            ("Threshold", "C2_comm_threshold"),
-            ("Learning", "C3_comm_learning"),
-        ],
-        "fig2_gap3_communication.png",
-        "Learning",
-    )
-    gap_bar_figure(
-        "Gap 4: central scalability",
-        [
-            ("No RAG", "R1_no_rag"),
-            ("Flat RAG", "R2_flat_rag"),
-            ("Hierarchical RAG", "R3_hierarchical_rag"),
-        ],
-        "fig2_gap4_rag.png",
-        "Hierarchical RAG",
-    )
-    gap_bar_figure(
-        "Gap 5: privacy conflict",
-        [
-            ("Resource only", "P1_resource_only"),
-            ("Budget 8", "P2_privacy_aware"),
-            ("Budget 12", "P3_epsilon_high"),
-            ("Budget 3", "P4_epsilon_low"),
-        ],
-        "fig2_gap5_privacy.png",
-        "",
+        [BLUE, TEAL, SAND, CORAL],
+        "Final test accuracy across privacy-budget settings",
+        "fig_gap5_privacy_accuracy.png",
     )
 
 
-def retrieval_quality_figure() -> None:
-    """One chart: precision at 5 per probe query. Latency and token counts stay in the paper text."""
-    probe = json.loads((RESULTS / "pc4" / "R0_retrieval_probe" / "retrieval_quality.json").read_text(encoding="utf-8"))
-    seen: dict[str, float] = {}
-    for row in probe["queries"]:
-        seen.setdefault(row["query"], float(row["precision_at_5"]))
-    labels = list(seen)
-    values = [seen[name] for name in labels]
-    mean_precision = sum(float(row["precision_at_5"]) for row in probe["queries"]) / len(probe["queries"])
-    colors = ["#1F4E79", "#2E7D4F", "#C47B2B", "#B85C38", "#5C4B8A", "#1F6F8B", "#8B3A3A", "#3D6B4F", "#7A5B2E", "#3E4C6B"]
+def figure_8_convergence() -> None:
+    """Fig. 8: test accuracy after each communication round."""
+    series = [
+        ("FedAvg", history("B1_fedavg"), BLUE),
+        ("FedProx", history("B2_fedprox"), SAND),
+        ("Complete SRA-FL", history("I3_complete_sra_fl"), TEAL),
+        ("Q-learning communication", history("C3_comm_learning"), CORAL),
+    ]
 
-    fig, ax = plt.subplots(figsize=(9.2, 6.0))
-    y = list(range(len(labels)))
-    ax.barh(y, values, color=colors[: len(values)], height=0.72, edgecolor="#1B2838", linewidth=0.6)
-    ax.set_yticks(y, labels)
-    for pos, value in zip(y, values):
-        ax.text(value + 0.02, pos, f"{value:.2f}", va="center", ha="left", fontsize=12, color="#1B2838")
-    ax.axvline(mean_precision, color="#8B1E3F", linestyle="--", linewidth=1.8, label=f"Mean {mean_precision:.2f}")
-    ax.set_title("Retrieval quality", fontsize=16, pad=10)
-    ax.set_xlabel("Precision at 5")
-    ax.set_ylabel("Query")
-    ax.set_xlim(0, 1.2)
+    fig, ax = plt.subplots(figsize=(7.6, 4.5))
+    for name, rows, color in series:
+        ax.plot(
+            [row["round"] for row in rows],
+            [row["accuracy"] * 100 for row in rows],
+            marker="o",
+            markersize=4.5,
+            linewidth=2,
+            color=color,
+            label=name,
+        )
+    ax.set_xlabel("Communication round")
+    ax.set_ylabel("Test accuracy (%)")
+    ax.set_xticks(range(0, 11))
+    ax.set_ylim(0, 100)
+    ax.set_title("Test accuracy after each communication round")
     ax.legend(frameon=False, loc="lower right")
-    ax.grid(axis="x", linestyle=":", alpha=0.6)
+    ax.grid(color="#E6E6E6")
     fig.tight_layout()
+    save(fig, "fig_convergence_accuracy.png")
 
-    targets = [
-        OUT / "paper_retrieval_precision.png",
-        ROOT / "results" / "figures" / "fig6_rag_orchestration_llm_profile.png",
-        ROOT / "assets" / "fig6_rag_orchestration_llm_profile.png",
-    ]
-    for path in targets:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(path)
-        print(path)
-    plt.close(fig)
+
+def main() -> None:
+    figure_1_architecture()
+    figure_2_baselines()
+    figure_3_audit()
+    figure_4_negotiation()
+    figure_5_communication()
+    figure_6_rag()
+    figure_7_privacy()
+    figure_8_convergence()
+    print(f"Wrote 8 figures to {OUT}")
 
 
 if __name__ == "__main__":
