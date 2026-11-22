@@ -1,0 +1,6 @@
+Research Gap,Baseline Condition,Proposed SRA-FL,Improvement
+Gap 1: Honesty Audit,A1_no_verification (72.65%),A3_aavl_historical (74.08%),"+1.43% accuracy, Liar Flagging"
+Gap 2: Client Negotiation,N1_fixed_config (74.08%),N2_rule_based / N3_llm (76.16%),"+2.08% accuracy, 100% agreement"
+Gap 3: Adaptive Comm,C1_comm_fixed (76.16%),C3_comm_learning (77.13%),"+0.97% accuracy, 1 upload saved"
+Gap 4: Orchestration (RAG),R1_no_rag (76.16%),R3_hierarchical_rag (77.08%),"+0.92% accuracy, sub-ms retrieval"
+Gap 5: Privacy Budget,P1_resource_only (Budget unconstrained),P2_privacy_aware (Epsilon bounded),Balanced 76.16% with budget safety
