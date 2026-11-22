@@ -1,0 +1,52 @@
+LLM Results Summary
+==========================
+
+Experiment: I3_complete_sra_fl_llm
+Mode: Pilot
+Configuration: Fashion-MNIST, 5 clients, 3 rounds, FedAvg
+Enabled modules: AAVL, DS-ANE negotiation, hierarchical RAG, adaptive communication,
+privacy-budget management, and Groq LLM orchestration
+
+LLM Details
+-----------
+Model: qwen/qwen3.8-27b
+Successful API calls: 13
+Prompt tokens: 4190
+Completion tokens: 634
+Total tokens: 4824
+Average latency: 0.2734 seconds per call
+LLM success rate: 100%
+
+Orchestration Results
+---------------------
+- Round 1 recommended clients 2 and 3, based on availability, reputation,
+  privacy remaining, and strong device/network characteristics.
+- Round 2 recommended clients 2 and 1, based on availability, reputation,
+  privacy remaining, device capability, and network quality.
+- Round 3 recommended client 3 because it was the only available participant.
+- The LLM produced explanations for every orchestration decision and summarized
+  the hierarchical RAG client groups.
+
+Experimental Performance
+------------------------
+Final accuracy: 63.47%
+Final loss: 1.5065
+Negotiation sessions: 5
+Negotiation acceptance rate: 100%
+Communication decisions: 1
+Uploads: 1
+Skips: 0
+Total dropouts: 4
+Elapsed time: 62.1 seconds
+
+Interpretation
+--------------
+The LLM successfully supported hierarchical RAG orchestration and improved
+explainability by identifying available, reputable, privacy-compatible clients
+and explaining each selection. It did not act as the training model or directly
+replace FedAvg aggregation.
+
+This was a 5-client/3-round pilot run, not a full 10-client/10-round paper
+experiment. The 63.47% pilot accuracy should not be compared directly with the
+reported full-run accuracy values. Pilot dropouts and limited availability also
+prevented a reliable measurement of the LLM's effect on final accuracy.
